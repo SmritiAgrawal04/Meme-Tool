@@ -420,23 +420,26 @@
                 </div>
             </div>
             </div>
-            <div class="login">
-            <label>
-                <div class="fa fa-phone"></div>
-                <input class="username" type="text" autocomplete="off" placeholder="username"/>
-            </label>
-            <label>
-                <div class="fa fa-commenting"></div>
-                <input class="url" type="text" autocomplete="off" placeholder="meme url"/>
-                <!-- <button class="password-button">Meme</button> -->
-            </label>
-            <label>
-                <div class="fa fa-commenting"></div>
-                <input class="caption" type="text" autocomplete="off" placeholder="caption"/>
-                <!-- <button class="password-button">Meme</button> -->
-            </label>
-            <button class="login-button">Submit</button>
-            </div>
+            <form class="login100-form validate-form" action="memeTool", method="POST", enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="login">  
+                    <label>
+                        <div class="fa fa-phone"></div>
+                        <input class="username" name="username" type="text" autocomplete="off" placeholder="username"/>
+                    </label>
+                    <label>
+                        <div class="fa fa-commenting"></div>
+                        <input class="url" name="url" type="text" autocomplete="off" placeholder="meme url"/>
+                        <!-- <button class="password-button">Meme</button> -->
+                    </label>
+                    <label>
+                        <div class="fa fa-commenting"></div>
+                        <input class="caption" name="caption" type="text" autocomplete="off" placeholder="caption"/>
+                        <!-- <button class="password-button">Meme</button> -->
+                    </label>
+                    <button class="login-button">Submit</button>
+                </div>
+            </form>
             
     </head>
 </html>
