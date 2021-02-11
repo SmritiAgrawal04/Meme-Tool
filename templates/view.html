@@ -1,134 +1,283 @@
 {% load static %}
 {% static "images" as baseUrl %}
 
-
-
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Masonry Responsive Template</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
-        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">
-        <script src="{% static 'js/vendor/modernizr-2.6.2.min.js' %}"></script>
-        <!-- 
-        Masonry Template 
-        http://www.templatemo.com/preview/templatemo_434_masonry
-        -->
-    </head>
-    <body>
-        
-        
-        
-        <!-- MAIN POSTS -->
-        <div class="main-posts">
-            <div class="container">
-                <div class="row">
-                  {% for meme in memes %}
-                  <div class="blog-masonry masonry-true">
-                    <div class="post-masonry col-md-4 col-sm-6">
-                        <div class="post-thumb">
-                            <img src={{meme.imageURL}} alt="">
-                            <div class="title-over">
-                                <h4><a href="#">Title one goes here</a></h4>
-                            </div>
-                            <div class="post-hover text-center">
-                                <div class="inside">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="date">25 Jan 2084</span>
-                                    <h4><a href="#">Title one goes here</a></h4>
-                                    <p>Cum sociis natoque penatibus et magnis dis parturient</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- /.post-masonry -->
-                    <div class="post-masonry col-md-4 col-sm-6">
-                        <div class="post-thumb">
-                            <img src={{meme.imageURL}} alt="">
-                            <div class="title-over">
-                                <h4><a href="#">Second Image Title</a></h4>
-                            </div>
-                            <div class="post-hover text-center">
-                                <div class="inside">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="date">24 Jan 2084</span>
-                                    <h4><a href="#">Second Image Title</a></h4>
-                                    <p>Donec venenatis libero sapien, eu condimentum lacus</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- /.post-masonry -->
-                    <div class="post-masonry col-md-4 col-sm-6">
-                        <div class="post-thumb">
-                            <img src={{meme.imageURL}} alt="">
-                            <div class="title-over">
-                                <h4><a href="#">Image Number Three</a></h4>
-                            </div>
-                            <div class="post-hover text-center">
-                                <div class="inside">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="date">23 Jan 2084</span>
-                                    <h4><a href="#">Image Number Three</a></h4>
-                                    <p>Sed vitae lacus eget ipsum scelerisque condimentum</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                  {% endfor %}
+        <title>
+            Meme Book
+        </title>
+        <style>
+            body {
+                min-height: 100%;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+                background-size: cover;
+                background-image:url({{baseUrl}}/lol.jpg);
+              }
+            .container {
+                position: relative;
+              }
+              .container .page-title, .container .page-sub-title {
+                color: white;
+                text-align: center;
+              }
+              .container .page-title {
+                margin: 30px 0 5px;
+                font-size: 30px;
+              }
+              .container .page-sub-title {
+                font-weight: 100;
+                margin: 0 0 30px 0;
+                font-size: 23px;
+              }
+              
+              html {
+                background: linear-gradient(45deg, #DE6262 10%, #FFB88C 90%);
+                font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+                height: 100vh;
+              }
+              
+              img {
+                display: block;
+                width: 100%;
+              }
+              
+              .card-container {
+                perspective: 1000;
+                margin: 0 auto 50px;
+                width: 400px;
+              }
+              
+              .front, .back {
+                -webkit-backface-visibility: hidden;
+                        backface-visibility: hidden;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                padding: 30px;
+                box-sizing: border-box;
+                transition-delay: 0.15s;
+                transition: 0;
+              }
+              
+              .front {
+                transform: rotateY(0deg);
+              }
+              
+              .back {
+                transform: rotateY(180deg);
+                opacity: 0;
+                padding-top: 60px;
+                -webkit-backface-visibility: visible;
+                        backface-visibility: visible;
+                background: #333741;
+                color: white;
+              }
+              
+              .card {
+                position: relative;
+                width: 400px;
+                height: 450px;
+                background: white;
+                border-radius: 5px;
+                box-shadow: 0 40px 110px rgba(0, 0, 0, 0.45);
+                overflow: hidden;
+                transition: 0.5s;
+                transform-style: preserve-3d;
+              }
+              .card:hover {
+                transform: rotateY(180deg);
+              }
+              .card:hover .front {
+                opacity: 0;
+              }
+              .card:hover .back {
+                opacity: 1;
+              }
+              
+              .sub-title {
+                color: #DE6262;
+                -webkit-animation: slide-in 0.75s;
+                        animation: slide-in 0.75s;
+                -webkit-animation: slide-in 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                        animation: slide-in 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                -webkit-animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                        animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                font-size: 18px;
+                font-weight: 200;
+                margin: 0 0 5px 0;
+              }
+              
+              .title {
+                color: #333741;
+                -webkit-animation: slide-in-slow 0.75s;
+                        animation: slide-in-slow 0.75s;
+                -webkit-animation: slide-in-slow 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                        animation: slide-in-slow 0.75s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                -webkit-animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                        animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                font-size: 30px;
+                font-weight: 600;
+                margin: 0;
+              }
+              
+              .synopsis {
+                color: #DE6262;
+                font-size: 27px;
+                font-weight: 600;
+                margin: 0 0 15px;
+              }
+              
+              p {
+                color: rgba(255, 255, 255, 0.85);
+                font-size: 19px;
+                line-height: 1.5;
+                margin: 0 0 35px;
+              }
+              
+              .btn {
+                border: 1px solid #FFB88C;
+                border-radius: 5px;
+                background: transparent;
+                display: inline-block;
+                font-size: 17px;
+                padding: 8px 20px 9px 15px;
+                color: #FFB88C;
+                transition: 0.5s;
+                margin: 0 2px 0;
+                font-weight: 100;
+              }
+              .btn.secondary {
+                border-color: #DE6262;
+                color: #DE6262;
+              }
+              .btn.secondary:hover {
+                background: #DE6262;
+              }
+              .btn:hover {
+                cursor: pointer;
+                background: #FFB88C;
+                color: white;
+              }
+              .btn i {
+                margin: 0 5px 0;
+              }
+              
+              .image {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                -webkit-animation: slide-in-right 1.25s;
+                        animation: slide-in-right 1.25s;
+                -webkit-animation: slide-in-right 1.25s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                        animation: slide-in-right 1.25s cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                -webkit-animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                        animation-timing-function: cubic-bezier(0.625, 0.075, 0.11, 1.165);
+                font-size: 35px;
+                font-weight: 600;
+                margin: 0;
+              }
+              
+              @-webkit-keyframes slide-in {
+                0% {
+                  transform: translate3d(-300px, 0, 0);
+                }
+                100% {
+                  transform: translate3d(0, 0, 0);
+                }
+              }
+              
+              @keyframes slide-in {
+                0% {
+                  transform: translate3d(-300px, 0, 0);
+                }
+                100% {
+                  transform: translate3d(0, 0, 0);
+                }
+              }
+              @-webkit-keyframes slide-in-slow {
+                0% {
+                  transform: translate3d(-300px, 0, 0);
+                }
+                20% {
+                  transform: translate3d(-300px, 0, 0);
+                }
+                100% {
+                  transform: translate3d(0, 0, 0);
+                }
+              }
+              @keyframes slide-in-slow {
+                0% {
+                  transform: translate3d(-300px, 0, 0);
+                }
+                20% {
+                  transform: translate3d(-300px, 0, 0);
+                }
+                100% {
+                  transform: translate3d(0, 0, 0);
+                }
+              }
+              @-webkit-keyframes slide-in-right {
+                0% {
+                  transform: translate3d(400px, 0, 0);
+                }
+                30% {
+                  transform: translate3d(400px, 0, 0);
+                  opacity: 0;
+                }
+                40% {
+                  opacity: 0;
+                }
+                100% {
+                  transform: translate3d(0, 0, 0);
+                  opacity: 1;
+                }
+              }
+              @keyframes slide-in-right {
+                0% {
+                  transform: translate3d(400px, 0, 0);
+                }
+                30% {
+                  transform: translate3d(400px, 0, 0);
+                  opacity: 0;
+                }
+                40% {
+                  opacity: 0;
+                }
+                100% {
+                  transform: translate3d(0, 0, 0);
+                  opacity: 1;
+                }
+              }
+        </style>
+
+        <body>
+            <!-- <img src="{{baseUrl}}/lol.jpg" style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:-5000;"> -->
+
+              {% for meme in memes %}
+              <div class="card-container">
+                <div class="card">
+                  <div class="front">
+                    <!-- <h2 class="sub-title">Prepared by-</h2> -->
+                    <h1 class="title">
+                      {{meme.userName}}
+                    </h1>
+                    <img class="image" src={{meme.imageURL}} alt="" />
+                  </div>
+                  <div class="back">
+                    <h3 class="synopsis">CAPTION</h3>
+                    <p>{{meme.captioxn}}</p>
+                    <div class="btn" id="btn"><i class="fa fa-play"></i>{{meme.likes}} likes</div>
+                    <div class="btn secondary"><i class="fa fa-heart "></i>Show <3</div>
+                  </div>
                 </div>
-            </div>
-        </div>
-
-        
-
-        <script src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
-        <script src="{% static 'js/min/plugins.min.js' %}"></script>
-        <script src="{% static 'js/min/main.min.js' %}"></script>
-
-        <!-- Preloader -->
-        <script type="text/javascript">
-            //<![CDATA[
-            $(window).load(function() { // makes sure the whole site is loaded
-                $('#loader').fadeOut(); // will first fade out the loading animation
-                    $('#loader-wrapper').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
-                $('body').delay(350).css({'overflow-y':'visible'});
-            })
-            //]]>
-        </script>
-	<!-- templatemo 434 masonry -->
-    </body>
-</html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>MEME BOOK</title>
-        <body>
-          {% for meme in memes %}
-          <p>{{meme.id}}  {{meme.userName}}  {{meme.caption}} <br></p>
-          <img src= {{meme.imageURL}}>
-          {% endfor %}
-<html lang="en">
-    <head>
-        <title>MEME BOOK</title>
-        <body>
-          {% for meme in memes %}
-          <p>{{meme.id}}  {{meme.userName}}  {{meme.caption}} <br></p>
-          <img src= {{meme.imageURL}}>
-          {% endfor %}
+                <br><br><br><br>
+                {% endfor %}
         </body>
-        
-
-          
-
     </head>
 </html>
+
