@@ -1,18 +1,12 @@
 from django.shortcuts import render
 from .models import Meme
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from urllib.parse import urlparse
 # Create your views here.
 def home(request):
-    # return HttpResponse("Hello Meme World!!")
     return (render(request, "home.html"))
 
-def uploadMeme(request):
-    return (render(request, 'upload.html'))
-
-def viewMeme(request):
-    return (render(request, 'view.html'))
-
-def memeTool(request):
+def memes(request):
     if request.method=='POST':
         userName= request.POST['username']
         caption= request.POST['caption']
@@ -30,5 +24,23 @@ def memeTool(request):
         return (render(request, 'view.html', {'memes': memeObj}))
 
     else:
-        memeObj= Meme.objects.filter()        
+        try:
+            mode= request.GET['mode']
+            if mode == 'upload':
+                return (render(request, 'upload.html'))
+            elif mode == 'view':
+                memeObj= Meme.objects.filter()        
+                return (render(request, 'view.html', {'memes': memeObj}))
+            else:
+                pass
+        except:
+            pass
+    
+def specialRequest(request, meme_id):
+    memeObj= Meme.objects.filter(id=meme_id)   
+    if memeObj:
         return (render(request, 'view.html', {'memes': memeObj}))
+    else:
+        return (render(request, '404Error.html'))
+
+    
