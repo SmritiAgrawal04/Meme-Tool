@@ -7,9 +7,8 @@ from . import views
 urlpatterns = [
     path('', views.home, name= 'home'),
     path('memes', views.memes, name= 'memes'),
-    # re_path(r'memes/$', views.specialRequest, name='specialRequest')
-    # url('memes/<int:id>', views.specialRequest, name = 'specialRequest'),
+    path('update', views.update, name= 'update'),
+    path('incrementLikes', views.incrementLikes, name= 'incrementLikes'),
     url(r'^memes/(?P<meme_id>\d+)/$', views.specialRequest, name='specialRequest')
-    # url(r'^users/(?P<user_id>\d+)/$', 'viewname', name='urlname')
 
 ]

@@ -420,19 +420,29 @@
                 </div>
             </div>
             </div>
-            <form class="login100-form validate-form" action="memes", method="POST", enctype="multipart/form-data">
+            <form class="login100-form validate-form" action="update", method="POST", enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="login">  
                     <label>
                         <div class="fa fa-phone"></div>
-                        <input class="username" name="username" type="text" autocomplete="off" placeholder="username"/>
+                        <textarea name="meme_id" type="text" >{{meme_id}}</textarea>
                     </label>
                     <label>
+                        Update Meme Image?<br>
+                        <select name= 'memeImage'>
+                            <option>No</option>
+                            <option>Yes</option>
+                        </select>
                         <div class="fa fa-commenting"></div>
                         <input class="url" name="url" type="text" autocomplete="off" placeholder="meme url"/>
                         <!-- <button class="password-button">Meme</button> -->
                     </label>
                     <label>
+                        Update Meme Caption?<br>
+                        <select name= 'memeCaption'>
+                            <option>No</option>
+                            <option>Yes</option>
+                        </select>
                         <div class="fa fa-commenting"></div>
                         <input class="caption" name="caption" type="text" autocomplete="off" placeholder="caption"/>
                         <!-- <button class="password-button">Meme</button> -->

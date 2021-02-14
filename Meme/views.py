@@ -11,7 +11,6 @@ def memes(request):
         userName= request.POST['username']
         caption= request.POST['caption']
         imageURL= request.POST['url']
-        print (userName, caption, imageURL)
 
         memeObj= Meme()
         memeObj.userName= userName
@@ -32,9 +31,9 @@ def memes(request):
                 memeObj= Meme.objects.filter()        
                 return (render(request, 'view.html', {'memes': memeObj}))
             else:
-                pass
+                return (render(request, '404Error.html'))
         except:
-            pass
+            return (render(request, '404Error.html'))
     
 def specialRequest(request, meme_id):
     memeObj= Meme.objects.filter(id=meme_id)   
@@ -43,4 +42,28 @@ def specialRequest(request, meme_id):
     else:
         return (render(request, '404Error.html'))
 
-    
+def update(request):
+    if request.method == 'GET':
+        meme_id= request.GET['meme_id']
+        memeObj= Meme.objects.filter(id=meme_id)   
+        if memeObj:
+            return(render(request, "update.html",  {'meme_id': meme_id}))
+        else:
+            return (render(request, '404Error.html'))
+    else:
+        meme_id= request.POST['meme_id']
+        if request.POST['memeCaption'] == 'Yes':
+            Meme.objects.filter(id=meme_id).update(caption= request.POST['caption'])
+        if request.POST['memeImage'] == 'Yes':
+            Meme.objects.filter(id=meme_id).update(imageURL= request.POST['url'])
+
+        memeObj= Meme.objects.filter()        
+        return (render(request, 'view.html', {'memes': memeObj}))
+
+
+def incrementLikes(request):
+    meme_id= request.GET['meme_id']
+    currentLikes = Meme.objects.filter(id=meme_id)[0].likes
+    Meme.objects.filter(id=meme_id).update(likes= currentLikes+1)
+    memeObj= Meme.objects.filter()        
+    return (render(request, 'view.html', {'memes': memeObj}))

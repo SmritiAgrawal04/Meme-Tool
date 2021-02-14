@@ -262,7 +262,7 @@
               <div class="card-container">
                 <div class="card">
                   <div class="front">
-                    <!-- <h2 class="sub-title">Prepared by-</h2> -->
+                    <h2 class="sub-title">Prepared by-</h2>
                     <h1 class="title">
                       {{meme.userName}}
                     </h1>
@@ -270,9 +270,13 @@
                   </div>
                   <div class="back">
                     <h3 class="synopsis">CAPTION</h3>
-                    <p>{{meme.captioxn}}</p>
-                    <div class="btn" id="btn"><i class="fa fa-play"></i>{{meme.likes}} likes</div>
-                    <div class="btn secondary"><i class="fa fa-heart "></i>Show <3</div>
+                    <p>{{meme.caption}}</p>
+                    <!-- <div class="btn" id="btn"><i class="fa fa-play"></i>{{meme.likes}} likes</div> -->
+                    <h2 class="sub-title">{{meme.likes}} likes</h2>
+                    <br>
+                    <a href='incrementLikes?meme_id={{meme.id}}'><div class="btn secondary"><i class="fa fa-heart "></i>Show <3</div></a>
+                    <br><br><br><br><br><br>
+                    <a href='update?meme_id={{meme.id}}'><div class="btn"><i class="fa fa-play "></i>Update Meme</div></a>
                   </div>
                 </div>
                 <br><br><br><br>
