@@ -1,6 +1,6 @@
 # Meme-Tool
 A "Laugh & Loose" Platform where a user can upload memes to make people laugh and viewers can LOL watching them. It allows the users to update the URL of the meme image and also the caption. The viewers can like the memes of their choice.
-Deployed on- 
+Deployed on- http://smritiagrawal04.pythonanywhere.com/
 
 
 ## Technologies 
@@ -37,3 +37,7 @@ Wait until a link pops up on the terminal, Ctrl+click on it to start..
 **Deactivate/Unplug**
 
 In the same terminal where you executed 'start' script, press Ctrl+C.
+
+**Demo**
+
+https://drive.google.com/file/d/197S0SW5BlO-8H4M9mUljklzYW61zeIA8/view?usp=sharing
